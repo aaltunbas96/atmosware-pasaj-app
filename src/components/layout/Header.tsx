@@ -8,6 +8,19 @@ import "react-multi-carousel/lib/styles.css";
 import Carousel from "react-multi-carousel";
 import useWindowSize from "@/hooks/useWindowSize";
 import ReactDropdown from "react-dropdown";
+import { useQuery } from "react-query";
+import { useSearchProductsListStore } from "@/store/searchProductsList";
+
+const fetchProducts = async (category?: string | null) => {
+  const url = category
+    ? `http://localhost:3001/products?category=${encodeURIComponent(category)}`
+    : `http://localhost:3001/products`;
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error("Network response was not ok");
+  }
+  return response.json();
+};
 
 const options = [
   { value: "one", label: "Favorilerim" },
@@ -47,6 +60,21 @@ const headerBottomContent = [
 ];
 
 export default function Header() {
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const { setProductsFromSearch } = useSearchProductsListStore();
+
+  useQuery(
+    ["products", selectedCategory],
+    () => fetchProducts(selectedCategory),
+    {
+      enabled: !!selectedCategory,
+      keepPreviousData: true,
+      onSuccess: (data) => {
+        setProductsFromSearch(data);
+      },
+    }
+  );
+
   const isSmallScreen = useWindowSize();
 
   const [isDisabled, setIsDisabled] = useState(true);
@@ -77,6 +105,11 @@ export default function Header() {
     } else if (selectedOption.value === options[3].value) {
       signOut();
     }
+  };
+
+  const handleCategoryClick = async (category: string) => {
+    setSelectedCategory(category);
+    await router.push("/categories");
   };
 
   return (
@@ -265,6 +298,10 @@ export default function Header() {
                   category.name !== "Cep Telefonu-Aksesuar" &&
                   "border-l-[1px] border-l-[#ecf0f2]"
                 }`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleCategoryClick(category.name);
+                }}
                 key={category.name}
               >
                 {category.name}
@@ -280,6 +317,10 @@ export default function Header() {
                   category.name !== "Cep Telefonu-Aksesuar" &&
                   "border-l-[1px] border-l-[#ecf0f2]"
                 }`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleCategoryClick(category.name);
+                }}
                 key={category.name}
               >
                 {category.name}
