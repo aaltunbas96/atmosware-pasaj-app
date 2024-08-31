@@ -57,7 +57,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         </span>
       </button>
       {/* <Link href={`http://localhost:3000/products/${id}`}> */}
-      <Link href={`${endpoint}/${id}`}>
+      <Link href={`https://atmosware-pasaj-app.vercel.app/products/${id}`}>
         <div className="p-c-body border-b-[1px]">
           <div className="p-c-b-carousel h-[13.3125rem] mb-3 relative">
             <Carousel
