@@ -1,8 +1,27 @@
-import React from "react";
+import { useLanguageStore } from "@/store/languageStore";
+import React, { useEffect } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
 export default function Footer() {
+  const { setLanguage } = useLanguageStore((state) => ({
+    setLanguage: state.setLanguage,
+  }));
+
+  useEffect(() => {
+    const savedLanguage =
+      typeof window !== "undefined"
+        ? (localStorage.getItem("language") as "tr" | "en")
+        : null;
+    if (savedLanguage) {
+      setLanguage(savedLanguage);
+    }
+  }, [setLanguage]);
+
+  const handleLanguageChange = (lang: "tr" | "en") => {
+    setLanguage(lang);
+  };
+
   return (
     <footer className="bg-[#27356f]">
       <div className="footer-top xs:pt-5 md:pt-10">
@@ -203,14 +222,23 @@ export default function Footer() {
             <div className="f-m-box-language xs:pb-4 md:pb-0">
               <ul className="text-white flex items-center gap-6">
                 <li>
-                  <a href="/" className="underline underline-offset-4">
+                  <a
+                    href=""
+                    className="underline underline-offset-4"
+                    onClick={() => {
+                      handleLanguageChange("tr");
+                    }}
+                  >
                     Türkçe
                   </a>
                 </li>
                 <li>
                   <a
-                    href="/"
+                    href=""
                     className="opacity-50 hover:opacity-100 hover:underline underline-offset-4 hover:transition duration-300"
+                    onClick={() => {
+                      handleLanguageChange("en");
+                    }}
                   >
                     English
                   </a>

@@ -1,4 +1,5 @@
 import { useFavListStore } from "@/store/favList";
+import { useLanguageStore } from "@/store/languageStore";
 import { useProductsStore } from "@/store/products";
 import { useParams } from "next/navigation";
 import React, { useState, useEffect, FormEvent, MouseEvent } from "react";
@@ -8,20 +9,32 @@ import "react-multi-carousel/lib/styles.css";
 import { useQuery } from "react-query";
 import { toast } from "react-toastify";
 
-const fetchProduct = async (id: string) => {
-  const response = await fetch("http://localhost:3001/products/" + id);
-  if (!response.ok) {
-    throw new Error("Network response was not ok");
-  }
-  return response.json();
-};
-
 export default function ProductDetailsTop() {
   const params = useParams();
   const id = params?.details as string;
   const { addProductToBasket } = useProductsStore();
   const { addProductToFavList } = useFavListStore();
   const { register, watch } = useForm();
+  const { getEndpoint, setLanguage } = useLanguageStore();
+  const endpoint = getEndpoint();
+
+  const fetchProduct = async (id: string) => {
+    const response = await fetch(endpoint + "/" + id);
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    return response.json();
+  };
+
+  useEffect(() => {
+    const savedLanguage =
+      typeof window !== "undefined"
+        ? (localStorage.getItem("language") as "tr" | "en")
+        : null;
+    if (savedLanguage) {
+      setLanguage(savedLanguage);
+    }
+  }, [setLanguage]);
 
   const { data: details } = useQuery(["product", id], () => fetchProduct(id), {
     enabled: !!id,

@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import ProductCard, { Product } from "./ProductCard";
 import { useQuery } from "react-query";
+import { useLanguageStore } from "@/store/languageStore";
 
-const fetchProducts = async (category?: string | null) => {
+const fetchProducts = async (endpoint: string, category?: string | null) => {
   const url = category
-    ? `http://localhost:3001/products?category=${encodeURIComponent(category)}`
-    : `http://localhost:3001/products`;
+    ? `${endpoint}?category=${encodeURIComponent(category)}`
+    : endpoint;
   const response = await fetch(url);
   if (!response.ok) {
     throw new Error("Network response was not ok");
@@ -17,15 +18,27 @@ const fetchProducts = async (category?: string | null) => {
 
 export default function MostPurchased() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const { getEndpoint, setLanguage } = useLanguageStore();
+  const endpoint = getEndpoint();
 
   const { data: products } = useQuery(
     ["products", selectedCategory],
-    () => fetchProducts(selectedCategory),
+    () => fetchProducts(endpoint, selectedCategory),
     {
       enabled: true,
       keepPreviousData: true,
     }
   );
+
+  useEffect(() => {
+    const savedLanguage =
+      typeof window !== "undefined"
+        ? (localStorage.getItem("language") as "tr" | "en")
+        : null;
+    if (savedLanguage) {
+      setLanguage(savedLanguage);
+    }
+  }, [setLanguage]);
 
   const handleCategoryClick = (category: string) => {
     setSelectedCategory(category);

@@ -1,6 +1,7 @@
+import { useLanguageStore } from "@/store/languageStore";
 import { useSearchProductsListStore } from "@/store/searchProductsList";
 import { useRouter } from "next/router";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
 
@@ -16,14 +17,6 @@ interface Product {
   category: string;
 }
 
-const fetchProducts = async (): Promise<Product[]> => {
-  const response = await fetch("http://localhost:3001/products/");
-  if (!response.ok) {
-    throw new Error("Network response was not ok");
-  }
-  return response.json();
-};
-
 function searchProducts(data: Product[], item: string): Product[] {
   let itemLowercase = item.toLowerCase().trim();
   return data.filter(
@@ -35,10 +28,30 @@ function searchProducts(data: Product[], item: string): Product[] {
 }
 
 export default function SearchArea() {
+  const { getEndpoint, setLanguage } = useLanguageStore();
+  const endpoint = getEndpoint();
+  const fetchProducts = async (): Promise<Product[]> => {
+    const response = await fetch(endpoint);
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    return response.json();
+  };
+
   const { data } = useQuery(["products"], fetchProducts);
   const { setProductsFromSearch } = useSearchProductsListStore();
   const [searchItem, setSearchItem] = useState("");
   const router = useRouter();
+
+  useEffect(() => {
+    const savedLanguage =
+      typeof window !== "undefined"
+        ? (localStorage.getItem("language") as "tr" | "en")
+        : null;
+    if (savedLanguage) {
+      setLanguage(savedLanguage);
+    }
+  }, [setLanguage]);
 
   const handleOnSearch = useCallback((item: string) => {
     setSearchItem(item);

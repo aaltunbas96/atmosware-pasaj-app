@@ -27,7 +27,8 @@ export default function DetailsBreadcrumb() {
           </svg>
           <li>
             <a
-              href="http://localhost:3001/categories"
+              // href="http://localhost:3001/categories"
+              href="https://atmosware-pasaj-app.vercel.app/categories"
               className="text-sm hover:text-[#ffc900] duration-300 ease-linear"
             >
               Ürün Kategorisi

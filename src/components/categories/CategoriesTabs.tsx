@@ -3,11 +3,15 @@ import { useState, useEffect } from "react";
 import "react-multi-carousel/lib/styles.css";
 import { useQuery } from "react-query";
 import Carousel from "react-multi-carousel";
+import { useLanguageStore } from "@/store/languageStore";
 
-async function fetchProductsByCategory(category: string | null) {
+async function fetchProductsByCategory(
+  category: string | null,
+  endpoint: string
+) {
   const url = category
-    ? `http://localhost:3001/products?category=${encodeURIComponent(category)}`
-    : `http://localhost:3001/products`;
+    ? `${endpoint}?category=${encodeURIComponent(category)}`
+    : endpoint;
 
   const response = await fetch(url);
   if (!response.ok) {
@@ -23,11 +27,13 @@ const categoryItemClass =
 export default function CategoriesTabs() {
   const { productsFromSearch, setProductsFromSearch } =
     useSearchProductsListStore();
+  const { getEndpoint, setLanguage } = useLanguageStore();
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const endpoint = getEndpoint();
 
   const { refetch } = useQuery(
     ["products", selectedCategory],
-    () => fetchProductsByCategory(selectedCategory),
+    () => fetchProductsByCategory(selectedCategory, endpoint),
     {
       enabled: false,
       onSuccess: (data) => {
@@ -41,6 +47,16 @@ export default function CategoriesTabs() {
       refetch();
     }
   }, [selectedCategory, refetch]);
+
+  useEffect(() => {
+    const savedLanguage =
+      typeof window !== "undefined"
+        ? (localStorage.getItem("language") as "tr" | "en")
+        : null;
+    if (savedLanguage) {
+      setLanguage(savedLanguage);
+    }
+  }, [setLanguage]);
 
   const handleCategoryClick = (category: string) => {
     setSelectedCategory(category);

@@ -10,11 +10,12 @@ import useWindowSize from "@/hooks/useWindowSize";
 import ReactDropdown from "react-dropdown";
 import { useQuery } from "react-query";
 import { useSearchProductsListStore } from "@/store/searchProductsList";
+import { useLanguageStore } from "@/store/languageStore";
 
-const fetchProducts = async (category?: string | null) => {
+const fetchProducts = async (endpoint: string, category?: string | null) => {
   const url = category
-    ? `http://localhost:3001/products?category=${encodeURIComponent(category)}`
-    : `http://localhost:3001/products`;
+    ? `${endpoint}?category=${encodeURIComponent(category)}`
+    : endpoint;
   const response = await fetch(url);
   if (!response.ok) {
     throw new Error("Network response was not ok");
@@ -62,10 +63,12 @@ const headerBottomContent = [
 export default function Header() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const { setProductsFromSearch } = useSearchProductsListStore();
+  const { getEndpoint, setLanguage } = useLanguageStore();
+  const endpoint = getEndpoint();
 
   useQuery(
     ["products", selectedCategory],
-    () => fetchProducts(selectedCategory),
+    () => fetchProducts(endpoint, selectedCategory),
     {
       enabled: !!selectedCategory,
       keepPreviousData: true,
@@ -74,6 +77,16 @@ export default function Header() {
       },
     }
   );
+
+  useEffect(() => {
+    const savedLanguage =
+      typeof window !== "undefined"
+        ? (localStorage.getItem("language") as "tr" | "en")
+        : null;
+    if (savedLanguage) {
+      setLanguage(savedLanguage);
+    }
+  }, [setLanguage]);
 
   const isSmallScreen = useWindowSize();
 
