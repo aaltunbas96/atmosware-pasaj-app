@@ -11,6 +11,7 @@ import ReactDropdown from "react-dropdown";
 import { useQuery } from "react-query";
 import { useSearchProductsListStore } from "@/store/searchProductsList";
 import { useLanguageStore } from "@/store/languageStore";
+import useGetLanguage from "@/hooks/useGetLanguage";
 
 const fetchProducts = async (endpoint: string, category?: string | null) => {
   const url = category
@@ -63,8 +64,9 @@ const headerBottomContent = [
 export default function Header() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const { setProductsFromSearch } = useSearchProductsListStore();
-  const { getEndpoint, setLanguage } = useLanguageStore();
+  const { getEndpoint } = useLanguageStore();
   const endpoint = getEndpoint();
+  useGetLanguage();
 
   useQuery(
     ["products", selectedCategory],
@@ -77,16 +79,6 @@ export default function Header() {
       },
     }
   );
-
-  useEffect(() => {
-    const savedLanguage =
-      typeof window !== "undefined"
-        ? (localStorage.getItem("language") as "tr" | "en")
-        : null;
-    if (savedLanguage) {
-      setLanguage(savedLanguage);
-    }
-  }, [setLanguage]);
 
   const isSmallScreen = useWindowSize();
 

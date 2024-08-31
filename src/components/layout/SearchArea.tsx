@@ -1,3 +1,5 @@
+import useCms from "@/hooks/useCms";
+import useGetLanguage from "@/hooks/useGetLanguage";
 import { useLanguageStore } from "@/store/languageStore";
 import { useSearchProductsListStore } from "@/store/searchProductsList";
 import { useRouter } from "next/router";
@@ -28,8 +30,9 @@ function searchProducts(data: Product[], item: string): Product[] {
 }
 
 export default function SearchArea() {
-  const { getEndpoint, setLanguage } = useLanguageStore();
+  const { getEndpoint } = useLanguageStore();
   const endpoint = getEndpoint();
+  useGetLanguage();
   const fetchProducts = async (): Promise<Product[]> => {
     const response = await fetch(endpoint);
     if (!response.ok) {
@@ -42,16 +45,7 @@ export default function SearchArea() {
   const { setProductsFromSearch } = useSearchProductsListStore();
   const [searchItem, setSearchItem] = useState("");
   const router = useRouter();
-
-  useEffect(() => {
-    const savedLanguage =
-      typeof window !== "undefined"
-        ? (localStorage.getItem("language") as "tr" | "en")
-        : null;
-    if (savedLanguage) {
-      setLanguage(savedLanguage);
-    }
-  }, [setLanguage]);
+  const cms = useCms();
 
   const handleOnSearch = useCallback((item: string) => {
     setSearchItem(item);
@@ -113,7 +107,7 @@ export default function SearchArea() {
             clearIconMargin: "0 8px 0 0",
             zIndex: 1,
           }}
-          placeholder="Ürün, marka veya kategori ara"
+          placeholder={cms?.searchAreaPlaceholder}
           items={data || []}
           onSearch={handleOnSearch}
           onSelect={handleOnSelect}

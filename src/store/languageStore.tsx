@@ -4,6 +4,7 @@ interface StoreState {
   language: "tr" | "en";
   setLanguage: (lang: "tr" | "en") => void;
   getEndpoint: () => string;
+  getCMSEndpoint: () => string;
 }
 
 export const useLanguageStore = create<StoreState>((set, get) => ({
@@ -21,6 +22,15 @@ export const useLanguageStore = create<StoreState>((set, get) => ({
         return "https://pasaj-back-end.vercel.app/products-en";
       default:
         return "https://pasaj-back-end.vercel.app/products";
+    }
+  },
+  getCMSEndpoint: () => {
+    const language = get().language;
+    switch (language) {
+      case "en":
+        return "https://pasaj-back-end.vercel.app/cms-en";
+      default:
+        return "https://pasaj-back-end.vercel.app/cms";
     }
   },
 }));

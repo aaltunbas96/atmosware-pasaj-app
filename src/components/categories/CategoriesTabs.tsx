@@ -4,6 +4,7 @@ import "react-multi-carousel/lib/styles.css";
 import { useQuery } from "react-query";
 import Carousel from "react-multi-carousel";
 import { useLanguageStore } from "@/store/languageStore";
+import useGetLanguage from "@/hooks/useGetLanguage";
 
 async function fetchProductsByCategory(
   category: string | null,
@@ -27,9 +28,10 @@ const categoryItemClass =
 export default function CategoriesTabs() {
   const { productsFromSearch, setProductsFromSearch } =
     useSearchProductsListStore();
-  const { getEndpoint, setLanguage } = useLanguageStore();
+  const { getEndpoint } = useLanguageStore();
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const endpoint = getEndpoint();
+  useGetLanguage();
 
   const { refetch } = useQuery(
     ["products", selectedCategory],
@@ -47,16 +49,6 @@ export default function CategoriesTabs() {
       refetch();
     }
   }, [selectedCategory, refetch]);
-
-  useEffect(() => {
-    const savedLanguage =
-      typeof window !== "undefined"
-        ? (localStorage.getItem("language") as "tr" | "en")
-        : null;
-    if (savedLanguage) {
-      setLanguage(savedLanguage);
-    }
-  }, [setLanguage]);
 
   const handleCategoryClick = (category: string) => {
     setSelectedCategory(category);

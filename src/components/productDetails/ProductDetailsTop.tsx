@@ -1,3 +1,4 @@
+import useGetLanguage from "@/hooks/useGetLanguage";
 import { useFavListStore } from "@/store/favList";
 import { useLanguageStore } from "@/store/languageStore";
 import { useProductsStore } from "@/store/products";
@@ -15,8 +16,9 @@ export default function ProductDetailsTop() {
   const { addProductToBasket } = useProductsStore();
   const { addProductToFavList } = useFavListStore();
   const { register, watch } = useForm();
-  const { getEndpoint, setLanguage } = useLanguageStore();
+  const { getEndpoint } = useLanguageStore();
   const endpoint = getEndpoint();
+  useGetLanguage();
 
   const fetchProduct = async (id: string) => {
     const response = await fetch(endpoint + "/" + id);
@@ -25,16 +27,6 @@ export default function ProductDetailsTop() {
     }
     return response.json();
   };
-
-  useEffect(() => {
-    const savedLanguage =
-      typeof window !== "undefined"
-        ? (localStorage.getItem("language") as "tr" | "en")
-        : null;
-    if (savedLanguage) {
-      setLanguage(savedLanguage);
-    }
-  }, [setLanguage]);
 
   const { data: details } = useQuery(["product", id], () => fetchProduct(id), {
     enabled: !!id,

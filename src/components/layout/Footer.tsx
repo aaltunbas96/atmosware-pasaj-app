@@ -1,3 +1,4 @@
+import useGetLanguage from "@/hooks/useGetLanguage";
 import { useLanguageStore } from "@/store/languageStore";
 import React, { useEffect } from "react";
 import Carousel from "react-multi-carousel";
@@ -7,16 +8,7 @@ export default function Footer() {
   const { setLanguage } = useLanguageStore((state) => ({
     setLanguage: state.setLanguage,
   }));
-
-  useEffect(() => {
-    const savedLanguage =
-      typeof window !== "undefined"
-        ? (localStorage.getItem("language") as "tr" | "en")
-        : null;
-    if (savedLanguage) {
-      setLanguage(savedLanguage);
-    }
-  }, [setLanguage]);
+  useGetLanguage();
 
   const handleLanguageChange = (lang: "tr" | "en") => {
     setLanguage(lang);

@@ -4,6 +4,8 @@ import "react-multi-carousel/lib/styles.css";
 import ProductCard, { Product } from "./ProductCard";
 import { useQuery } from "react-query";
 import { useLanguageStore } from "@/store/languageStore";
+import useCms from "@/hooks/useCms";
+import useGetLanguage from "@/hooks/useGetLanguage";
 
 const fetchProducts = async (endpoint: string, category?: string | null) => {
   const url = category
@@ -18,8 +20,10 @@ const fetchProducts = async (endpoint: string, category?: string | null) => {
 
 export default function MostPurchased() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const { getEndpoint, setLanguage } = useLanguageStore();
+  const { getEndpoint } = useLanguageStore();
   const endpoint = getEndpoint();
+  const cms = useCms();
+  useGetLanguage();
 
   const { data: products } = useQuery(
     ["products", selectedCategory],
@@ -29,16 +33,6 @@ export default function MostPurchased() {
       keepPreviousData: true,
     }
   );
-
-  useEffect(() => {
-    const savedLanguage =
-      typeof window !== "undefined"
-        ? (localStorage.getItem("language") as "tr" | "en")
-        : null;
-    if (savedLanguage) {
-      setLanguage(savedLanguage);
-    }
-  }, [setLanguage]);
 
   const handleCategoryClick = (category: string) => {
     setSelectedCategory(category);
@@ -111,9 +105,7 @@ export default function MostPurchased() {
                   alt="Cep Telefonu-Aksesuar Logo"
                   className="mb-2.5 h-[30px]"
                 />
-                <span className="text-center py-1 px-2">
-                  Cep Telefonu-Aksesuar
-                </span>
+                <span className="text-center py-1 px-2">{cms?.title}</span>
               </div>
               <div
                 className="m-p-c-item flex flex-col items-center cursor-pointer hover:border-b-[3px] border-[#2855ac] hover:text-[#2855ac] hover:transition duration-100 ease-in"
