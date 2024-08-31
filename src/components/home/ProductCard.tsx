@@ -5,6 +5,7 @@ import "react-multi-carousel/lib/styles.css";
 import { HeartIcon } from "../icons/HeartIcon";
 import { useFavListStore } from "@/store/favList";
 import { toast } from "react-toastify";
+import { useLanguageStore } from "@/store/languageStore";
 
 export interface Product {
   id: string;
@@ -25,6 +26,8 @@ export default function ProductCard({ product }: ProductCardProps) {
   const { favProducts, removeProductFromFavList, addProductToFavList } =
     useFavListStore();
   const isFavorite = favProducts.some((favProduct) => favProduct.id === id);
+  const { getEndpoint } = useLanguageStore();
+  const endpoint = getEndpoint();
 
   const onClick = () => {
     if (isFavorite) {
@@ -53,7 +56,8 @@ export default function ProductCard({ product }: ProductCardProps) {
           <HeartIcon color={isFavorite ? "#ffcb05" : "#fff"} />
         </span>
       </button>
-      <Link href={`http://localhost:3000/products/${id}`}>
+      {/* <Link href={`http://localhost:3000/products/${id}`}> */}
+      <Link href={`${endpoint}/${id}`}>
         <div className="p-c-body border-b-[1px]">
           <div className="p-c-b-carousel h-[13.3125rem] mb-3 relative">
             <Carousel
