@@ -114,9 +114,11 @@ export default function Header() {
     }
   };
 
-  const handleCategoryClick = async (category: string) => {
+  const handleCategoryClick = (category: string) => {
     setSelectedCategory(category);
-    await router.push("/categories");
+    setTimeout(() => {
+      router.push("/categories");
+    }, 750);
   };
 
   return (
