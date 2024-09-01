@@ -1,17 +1,20 @@
+import useCms from "@/hooks/useCms";
+import useGetLanguage from "@/hooks/useGetLanguage";
 import React from "react";
 
 export default function WhyUs() {
+  const cms = useCms();
+  useGetLanguage();
+
   return (
     <section className="why-us">
       <div className="container">
-        <h2 className="text-center mb-5 text-[34px] leading-5">Neden Pasaj?</h2>
+        <h2 className="text-center mb-5 text-[34px] leading-5">{cms?.htWhy}</h2>
         <div className="why-us-top text-center pb-[30px]">
           <p className="mb-5 leading-[1.6rem]">
-            Akıllı telefondan elektrikli süpürgeye, hobi ürünlerinden akıllı
-            saatlere binlerce çeşit elektronik ürünü Turkcell Pasaj güvencesi ve
-            Turkcell
+            {cms?.wuTop1}
             <br />
-            Pasaj ayrıcalığıyla keşfedin.
+            {cms?.wuTop2}
           </p>
         </div>
         <div className="why-us-bottom flex flex-wrap justify-between items-center">
@@ -21,14 +24,14 @@ export default function WhyUs() {
             </div>
             <div>
               <h3 className="text-[1.625rem] leading-5 mb-3 text-center">
-                Hızlı ve Kolay Teslimat
+                {cms?.wuBox1Title}
               </h3>
               <p className="text-center">
-                Siparişiniz isterseniz gün içinde gelsin,
+                {cms?.wuBox1}
                 <br />
-                isterseniz bir tıkla gelin ve mağazadan
+                {cms?.wuBox12}
                 <br />
-                teslim alın.
+                {cms?.wuBox13}
               </p>
             </div>
           </div>
@@ -38,29 +41,29 @@ export default function WhyUs() {
             </div>
             <div>
               <h3 className="text-[1.625rem] leading-5 mb-3 text-center">
-                Esnek Ödeme Seçenekleri
+                {cms?.wuBox2Title}
               </h3>
               <p className="text-center">
-                Alışverişlerinizi ister kredi kartınıza
+                {cms?.wuBox2}
                 <br />
-                taksitlendirin ister Turkcell faturanıza ek, 36
+                {cms?.wuBox22}
                 <br />
-                aya varan vade imkanından faydalanın.
+                {cms?.wuBox23}
               </p>
             </div>
           </div>
-          <div className="w-u-box xs:w-full md:w-[20.625rem] flex flex-col items-center xs:pt-4 md:pt-0">
+          <div className="w-u-box xs:w-full md:w-[20.625rem] flex flex-col items-center xs:pt-4 md:pt-0 md:pb-[1.35rem]">
             <div className="w-u-icon flex justify-center items-center mb-[1.5625rem] w-[100px] h-[100px] rounded-full">
               <i className="bi bi-arrow-counterclockwise text-white text-5xl"></i>
             </div>
             <div>
               <h3 className="text-[1.625rem] leading-5 mb-3 text-center">
-                Ücretsiz İptal ve İade
+                {cms?.wuBox3Title}
               </h3>
               <p className="text-center">
-                Ürünlerinizi kolayca ve hiçbir ücret
+                {cms?.wuBox3}
                 <br />
-                ödemeden iptal ve iade edebilirsiniz.
+                {cms?.wuBox32}
               </p>
             </div>
           </div>

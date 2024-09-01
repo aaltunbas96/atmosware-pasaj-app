@@ -1,13 +1,18 @@
+import useCms from "@/hooks/useCms";
+import useGetLanguage from "@/hooks/useGetLanguage";
 import React from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
 export default function Opportunities() {
+  const cms = useCms();
+  useGetLanguage();
+
   return (
     <section className="opportunities py-[50px]">
       <div className="container">
         <h2 className="text-[34px] xs:leading-10 md:leading-5 mb-9 xs:text-center md:text-start">
-          Kaçırılmayacak Fırsatlar
+          {cms?.oTitle}
         </h2>
         <div className="o-boxes">
           <Carousel

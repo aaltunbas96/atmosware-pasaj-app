@@ -5,7 +5,8 @@ import "react-multi-carousel/lib/styles.css";
 import { HeartIcon } from "../icons/HeartIcon";
 import { useFavListStore } from "@/store/favList";
 import { toast } from "react-toastify";
-import { useLanguageStore } from "@/store/languageStore";
+import useCms from "@/hooks/useCms";
+import useGetLanguage from "@/hooks/useGetLanguage";
 
 export interface Product {
   id: string;
@@ -26,8 +27,8 @@ export default function ProductCard({ product }: ProductCardProps) {
   const { favProducts, removeProductFromFavList, addProductToFavList } =
     useFavListStore();
   const isFavorite = favProducts.some((favProduct) => favProduct.id === id);
-  const { getEndpoint } = useLanguageStore();
-  const endpoint = getEndpoint();
+  const cms = useCms();
+  useGetLanguage();
 
   const onClick = () => {
     if (isFavorite) {
@@ -135,14 +136,14 @@ export default function ProductCard({ product }: ProductCardProps) {
           </div>
           <div className="badges mt-2 mb-3 flex">
             <div className="b-item bg-[#E5F8FF] text-[0.5625rem] leading[1.11rem] text-center text-[#5f6b76] py-1 px-1.5 mr-1 rounded">
-              Alışveriş
+              {cms?.pCardShopping}
               <br />
-              Kredisi
+              {cms?.pCardCredit}
             </div>
             <div className="b-item bg-[#FDF7E7] text-[0.5625rem] leading[1.11rem] text-center text-[#5f6b76] py-1 px-1.5 mr-1 rounded">
-              Ücretsiz
+              {cms?.pCardFree}
               <br />
-              Kargo
+              {cms?.pCardShipping}
             </div>
           </div>
         </div>

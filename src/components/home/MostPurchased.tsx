@@ -42,7 +42,7 @@ export default function MostPurchased() {
     <section className="most-purchased xs:py-[25px] md:py-[50px]">
       <div className="container">
         <h2 className="text-[34px] leading-5 mb-9 xs:text-center md:text-start">
-          Çok Satanlar
+          {cms?.pc4}
         </h2>
         <div>
           <div className="m-p-categories mb-[30px] border-b-[1.5px]">
@@ -105,7 +105,7 @@ export default function MostPurchased() {
                   alt="Cep Telefonu-Aksesuar Logo"
                   className="mb-2.5 h-[30px]"
                 />
-                <span className="text-center py-1 px-2">{cms?.title}</span>
+                <span className="text-center py-1 px-2">{cms?.cat1}</span>
               </div>
               <div
                 className="m-p-c-item flex flex-col items-center cursor-pointer hover:border-b-[3px] border-[#2855ac] hover:text-[#2855ac] hover:transition duration-100 ease-in"
@@ -116,7 +116,7 @@ export default function MostPurchased() {
                   alt="Bilgisayar-Tablet Logo"
                   className="mb-2.5 h-[30px]"
                 />
-                <span className="text-center py-4">Bilgisayar-Tablet</span>
+                <span className="text-center py-4">{cms?.cat2}</span>
               </div>
               <div
                 className="m-p-c-item flex flex-col items-center cursor-pointer hover:border-b-[3px] border-[#2855ac] hover:text-[#2855ac] hover:transition duration-100 ease-in"
@@ -127,7 +127,7 @@ export default function MostPurchased() {
                   alt="Elektrikli Ev Aletleri Logo"
                   className="mb-2.5 h-[30px]"
                 />
-                <span className="text-center py-4">Elektrikli Ev Aletleri</span>
+                <span className="text-center py-4">{cms?.cat3}</span>
               </div>
               <div
                 className="m-p-c-item flex flex-col items-center cursor-pointer hover:border-b-[3px] border-[#2855ac] hover:text-[#2855ac] hover:transition duration-100 ease-in"
@@ -138,7 +138,7 @@ export default function MostPurchased() {
                   alt="Sağlık-Kişisel Bakım Logo"
                   className="mb-2.5 h-[30px]"
                 />
-                <span className="text-center py-4">Sağlık-Kişisel Bakım</span>
+                <span className="text-center py-4">{cms?.cat5}</span>
               </div>
               <div
                 className="m-p-c-item flex flex-col items-center cursor-pointer hover:border-b-[3px] border-[#2855ac] hover:text-[#2855ac] hover:transition duration-100 ease-in"
@@ -149,7 +149,7 @@ export default function MostPurchased() {
                   alt="Beyaz Eşya Logo"
                   className="mb-2.5 h-[30px]"
                 />
-                <span className="text-center py-4">Beyaz Eşya</span>
+                <span className="text-center py-4">{cms?.cat4}</span>
               </div>
               <div
                 className="m-p-c-item flex flex-col items-center cursor-pointer hover:border-b-[3px] border-[#2855ac] hover:text-[#2855ac] hover:transition duration-100 ease-in"
@@ -160,7 +160,7 @@ export default function MostPurchased() {
                   alt="Hobi-Oyun Logo"
                   className="mb-2.5 h-[30px]"
                 />
-                <span className="text-center py-4">Hobi-Oyun</span>
+                <span className="text-center py-4">{cms?.cat6}</span>
               </div>
               <div
                 className="m-p-c-item flex flex-col items-center cursor-pointer hover:border-b-[3px] border-[#2855ac] hover:text-[#2855ac] hover:transition duration-100 ease-in"
@@ -171,7 +171,7 @@ export default function MostPurchased() {
                   alt="TV-Ses Sistemleri Logo"
                   className="mb-2.5 h-[30px]"
                 />
-                <span className="text-center py-4">TV-Ses Sistemleri</span>
+                <span className="text-center py-4">{cms?.cat7}</span>
               </div>
               <div
                 className="m-p-c-item flex flex-col items-center cursor-pointer hover:border-b-[3px] border-[#2855ac] hover:text-[#2855ac] hover:transition duration-100 ease-in"
@@ -182,7 +182,7 @@ export default function MostPurchased() {
                   alt="Ev-Yaşam Logo"
                   className="mb-2.5 h-[30px]"
                 />
-                <span className="text-center py-4">Ev-Yaşam</span>
+                <span className="text-center py-4">{cms?.cat8}</span>
               </div>
               <div
                 className="m-p-c-item flex flex-col items-center cursor-pointer hover:border-b-[3px] border-[#2855ac] hover:text-[#2855ac] hover:transition duration-100 ease-in"
@@ -193,7 +193,7 @@ export default function MostPurchased() {
                   alt="Anne-Bebek-Oyuncak Logo"
                   className="mb-2.5 h-[30px]"
                 />
-                <span className="text-center py-4">Anne-Bebek-Oyuncak</span>
+                <span className="text-center py-4">{cms?.cat9}</span>
               </div>
             </Carousel>
           </div>

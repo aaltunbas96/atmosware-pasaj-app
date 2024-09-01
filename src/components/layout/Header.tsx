@@ -12,6 +12,7 @@ import { useQuery } from "react-query";
 import { useSearchProductsListStore } from "@/store/searchProductsList";
 import { useLanguageStore } from "@/store/languageStore";
 import useGetLanguage from "@/hooks/useGetLanguage";
+import useCms from "@/hooks/useCms";
 
 const fetchProducts = async (endpoint: string, category?: string | null) => {
   const url = category
@@ -24,49 +25,50 @@ const fetchProducts = async (endpoint: string, category?: string | null) => {
   return response.json();
 };
 
-const options = [
-  { value: "one", label: "Favorilerim" },
-  { value: "two", label: "Siparişlerim" },
-  { value: "three", label: "Hesabım" },
-  { value: "four", label: "Çıkış Yap" },
-];
-
-const headerBottomContent = [
-  {
-    name: "Cep Telefonu-Aksesuar",
-  },
-  {
-    name: "Bilgisayar-Tablet",
-  },
-  {
-    name: "Elektrikli Ev Aletleri",
-  },
-  {
-    name: "Beyaz Eşya",
-  },
-  {
-    name: "Sağlık-Kişisel Bakım",
-  },
-  {
-    name: "Hobi-Oyun",
-  },
-  {
-    name: "TV-Ses Sistemleri",
-  },
-  {
-    name: "Ev-Yaşam",
-  },
-  {
-    name: "Anne-Bebek-Oyuncak",
-  },
-];
-
 export default function Header() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const { setProductsFromSearch } = useSearchProductsListStore();
   const { getEndpoint } = useLanguageStore();
   const endpoint = getEndpoint();
+  const cms = useCms();
   useGetLanguage();
+
+  const options = [
+    { value: "one", label: cms?.htFav },
+    { value: "two", label: cms?.loginOrder },
+    { value: "three", label: cms?.loginAccount },
+    { value: "four", label: cms?.logoutPlaceholder },
+  ];
+
+  const headerBottomContent = [
+    {
+      name: cms?.cat1,
+    },
+    {
+      name: cms?.cat2,
+    },
+    {
+      name: cms?.cat3,
+    },
+    {
+      name: cms?.cat4,
+    },
+    {
+      name: cms?.cat5,
+    },
+    {
+      name: cms?.cat6,
+    },
+    {
+      name: cms?.cat7,
+    },
+    {
+      name: cms?.cat8,
+    },
+    {
+      name: cms?.cat9,
+    },
+  ];
 
   useQuery(
     ["products", selectedCategory],
@@ -133,12 +135,12 @@ export default function Header() {
           </a>
           {!isSmallScreen && (
             <div className="header-top-menu flex gap-6">
-              <a href="http://localhost:3000/favourites">Favorilerim</a>
-              <a href="/">Kampanyalar</a>
-              <a href="/">Yardım</a>
-              <a href="/">Neden Pasaj?</a>
-              <a href="/">Pasaj Blog</a>
-              <a href="/">Sipariş Sorgulama</a>
+              <a href="http://localhost:3000/favourites">{cms?.htFav}</a>
+              <a href="/">{cms?.htCam}</a>
+              <a href="/">{cms?.htHelp}</a>
+              <a href="/">{cms?.htWhy}</a>
+              <a href="/">{cms?.htBlog}</a>
+              <a href="/">{cms?.htOrder}</a>
             </div>
           )}
         </div>
@@ -173,7 +175,7 @@ export default function Header() {
                       d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
                     />
                   </svg>
-                  {session ? session.user?.name : "Giriş Yap"}
+                  {session ? session.user?.name : cms?.loginPlaceholder}
                 </span>
               }
               className="my-account md:w-[178px] md:h-[60px]"
@@ -237,7 +239,7 @@ export default function Header() {
                   d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
                 />
               </svg>
-              Sepet
+              {cms?.basketPlaceholder}
               <span className="flex justify-center items-center text-white xs:w-[28.5px] xs:h-[28.5px] md:w-[38px] md:h-[38px] bg-[#ed6060] border-[3px] border-[#fafbfd] rounded-[50%] absolute xs:right-[-14px] md:right-[-19px]">
                 {productsCounter}
               </span>

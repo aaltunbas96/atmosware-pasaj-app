@@ -1,11 +1,16 @@
+import useCms from "@/hooks/useCms";
+import useGetLanguage from "@/hooks/useGetLanguage";
 import React from "react";
 
 export default function PopularCategories() {
+  const cms = useCms();
+  useGetLanguage();
+
   return (
     <section className="popular-categories py-[50px]">
       <div className="container">
         <h1 className="text-[34px] leading-5 mb-9 xs:text-center md:text-start">
-          Popüler Kategoriler
+          {cms?.pcTitle}
         </h1>
         <div className="p-c-box flex flex-wrap justify-center gap-4 md:justify-between">
           <a href="/" className="flex flex-col items-center w-[82px]">
@@ -16,7 +21,7 @@ export default function PopularCategories() {
                 className="rounded-full"
               />
             </div>
-            <span className="text-center mb-2.5">Hediye Çeklerim</span>
+            <span className="text-center mb-2.5">{cms?.pc1}</span>
           </a>
           <a
             href="https://www.turkcell.com.tr/kampanyalar/pasaj/cihazlar/en-favori-urunler"
@@ -29,7 +34,7 @@ export default function PopularCategories() {
                 className="rounded-full"
               />
             </div>
-            <span className="text-center mb-2.5">En Çok Favorilenenler</span>
+            <span className="text-center mb-2.5">{cms?.pc2}</span>
           </a>
           <a
             href="https://www.turkcell.com.tr/kampanya/turkcell-firsatlar-kapisi/"
@@ -42,7 +47,7 @@ export default function PopularCategories() {
                 className="rounded-full"
               />
             </div>
-            <span className="text-center mb-2.5">Fırsatlar Kapısı</span>
+            <span className="text-center mb-2.5">{cms?.pc3}</span>
           </a>
           <a
             href="https://www.turkcell.com.tr/kampanyalar/pasaj/cihazlar/cok-satan-urunler"
@@ -55,7 +60,7 @@ export default function PopularCategories() {
                 className="rounded-full"
               />
             </div>
-            <span className="text-center mb-2.5">Çok Satanlar</span>
+            <span className="text-center mb-2.5">{cms?.pc4}</span>
           </a>
           <a
             href="https://www.turkcell.com.tr/pasaj/cep-telefonu/cep-telefonu-aksesuarlari/kulakliklar"
@@ -68,7 +73,7 @@ export default function PopularCategories() {
                 className="rounded-full"
               />
             </div>
-            <span className="text-center mb-2.5">Kulaklıklar</span>
+            <span className="text-center mb-2.5">{cms?.pc5}</span>
           </a>
           <a
             href="https://www.turkcell.com.tr/pasaj/cep-telefonu/ios-telefonlar"
@@ -81,7 +86,7 @@ export default function PopularCategories() {
                 className="rounded-full"
               />
             </div>
-            <span className="text-center mb-2.5">Apple Telefonlar</span>
+            <span className="text-center mb-2.5">{cms?.pc6}</span>
           </a>
           <a
             href="https://www.turkcell.com.tr/pasaj/cep-telefonu/cep-telefonu-aksesuarlari/sarj-cihazlari/tasinabilir-sarj-cihazlari-powerbank"
@@ -94,7 +99,7 @@ export default function PopularCategories() {
                 className="rounded-full"
               />
             </div>
-            <span className="text-center mb-2.5">Powerbank</span>
+            <span className="text-center mb-2.5">{cms?.pc7}</span>
           </a>
           <a
             href="https://www.turkcell.com.tr/pasaj/elektrikli-ev-aletleri/elektrikli-mutfak-aletleri/kahve-makinesi"
@@ -107,7 +112,7 @@ export default function PopularCategories() {
                 className="rounded-full"
               />
             </div>
-            <span className="text-center mb-2.5">Kahve Makineleri</span>
+            <span className="text-center mb-2.5">{cms?.pc8}</span>
           </a>
           <a
             href="https://www.turkcell.com.tr/pasaj/bilgisayar-tablet/tabletler/apple-tabletler"
@@ -120,7 +125,7 @@ export default function PopularCategories() {
                 className="rounded-full"
               />
             </div>
-            <span className="text-center mb-2.5">Apple Tabletler</span>
+            <span className="text-center mb-2.5">{cms?.pc9}</span>
           </a>
           <a
             href="https://www.turkcell.com.tr/pasaj/bilgisayar-tablet/bilgisayarlar"
@@ -133,7 +138,7 @@ export default function PopularCategories() {
                 className="rounded-full"
               />
             </div>
-            <span className="text-center mb-2.5">Bilgisayarlar</span>
+            <span className="text-center mb-2.5">{cms?.pc10}</span>
           </a>
         </div>
       </div>

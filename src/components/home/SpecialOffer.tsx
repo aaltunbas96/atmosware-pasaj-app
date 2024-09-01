@@ -1,6 +1,11 @@
+import useCms from "@/hooks/useCms";
+import useGetLanguage from "@/hooks/useGetLanguage";
 import React from "react";
 
 export default function SpecialOffer() {
+  const cms = useCms();
+  useGetLanguage();
+
   return (
     <section className="special-offer xs:py-[25px] md:py-[50px]">
       <div className="container">
@@ -13,7 +18,7 @@ export default function SpecialOffer() {
             />
             <div>
               <h2 className="xs:text-[0.75rem] md:text-[1.5rem] text-white">
-                Turkcell Faturana Ek Alabileceğin Cihazlar
+                {cms?.soTitle}
               </h2>
             </div>
           </div>
@@ -22,7 +27,7 @@ export default function SpecialOffer() {
               href="/"
               className="flex justify-between items-center xs:min-w-[4.375rem] xs:h-5 md:min-w-[8.75rem] md:h-10 bg-[#ffc900] xs:px-3 md:px-6 rounded-[2.5rem] hover:bg-[#ffd917] transition duration-200 ease-in"
             >
-              İncele
+              {cms?.hsButton}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

@@ -1,11 +1,16 @@
+import useCms from "@/hooks/useCms";
+import useGetLanguage from "@/hooks/useGetLanguage";
 import React from "react";
 
 export default function Campaigns() {
+  const cms = useCms();
+  useGetLanguage();
+
   return (
     <section className="campaigns py-[50px]">
       <div className="container">
         <h2 className="text-[34px] leading-5 mb-9 xs:text-center md:text-start">
-          Kampanyalar
+          {cms?.htCam}
         </h2>
         <div className="campaigns-box flex xs:flex-col md:flex-row justify-start">
           <div className="c-b-left mx-2.5">

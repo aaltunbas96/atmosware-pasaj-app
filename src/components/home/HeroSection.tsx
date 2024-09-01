@@ -1,3 +1,5 @@
+import useCms from "@/hooks/useCms";
+import useGetLanguage from "@/hooks/useGetLanguage";
 import React from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -92,44 +94,47 @@ const responsive = {
   tablet: { breakpoint: { max: 1024, min: 464 }, items: 1 },
 };
 
-const HeroSection: React.FC = () => (
-  <section className="hero-section xs:pt-5 md:pt-10 xs:pb-6 md:pb-12 xs:h-[220.5px] md:h-[588px]">
-    <div className="container">
-      <div className="h-s-boxes pb-8 relative">
-        <Carousel
-          additionalTransfrom={0}
-          arrows
-          autoPlay
-          autoPlaySpeed={3000}
-          centerMode={false}
-          draggable
-          focusOnSelect={false}
-          infinite
-          keyBoardControl
-          minimumTouchDrag={80}
-          pauseOnHover
-          renderDotsOutside
-          responsive={responsive}
-          showDots
-          swipeable
-        >
-          {items.map((item, index) => (
-            <div key={index} className="h-s-box relative">
-              <img src={item.img} alt={item.alt} />
-              <div className="h-s-button absolute xs:bottom-[1.40625rem] xs:left-[1.85rem] md:bottom-[7.5rem] md:left-[6.25rem]">
-                <a
-                  href={item.href}
-                  className="rounded-lg bg-[#ffc900] text-[#2855ac] xs:py-1 xs:px-4 md:py-4 md:px-16 hover:bg-[#eeb116] transition duration-300 ease-in"
-                >
-                  İncele
-                </a>
-              </div>
-            </div>
-          ))}
-        </Carousel>
-      </div>
-    </div>
-  </section>
-);
+export default function HeroSection() {
+  const cms = useCms();
+  useGetLanguage();
 
-export default HeroSection;
+  return (
+    <section className="hero-section xs:pt-5 md:pt-10 xs:pb-6 md:pb-12 xs:h-[220.5px] md:h-[588px]">
+      <div className="container">
+        <div className="h-s-boxes pb-8 relative">
+          <Carousel
+            additionalTransfrom={0}
+            arrows
+            autoPlay
+            autoPlaySpeed={3000}
+            centerMode={false}
+            draggable
+            focusOnSelect={false}
+            infinite
+            keyBoardControl
+            minimumTouchDrag={80}
+            pauseOnHover
+            renderDotsOutside
+            responsive={responsive}
+            showDots
+            swipeable
+          >
+            {items.map((item, index) => (
+              <div key={index} className="h-s-box relative">
+                <img src={item.img} alt={item.alt} />
+                <div className="h-s-button absolute xs:bottom-[1.40625rem] xs:left-[1.85rem] md:bottom-[7.5rem] md:left-[6.25rem]">
+                  <a
+                    href={item.href}
+                    className="rounded-lg bg-[#ffc900] text-[#2855ac] xs:py-1 xs:px-4 md:py-4 md:px-16 hover:bg-[#eeb116] transition duration-300 ease-in"
+                  >
+                    {cms?.hsButton}
+                  </a>
+                </div>
+              </div>
+            ))}
+          </Carousel>
+        </div>
+      </div>
+    </section>
+  );
+}

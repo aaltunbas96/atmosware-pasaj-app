@@ -1,18 +1,26 @@
+import useCms from "@/hooks/useCms";
 import useGetLanguage from "@/hooks/useGetLanguage";
 import { useLanguageStore } from "@/store/languageStore";
-import React, { useEffect } from "react";
+import React from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
 export default function Footer() {
-  const { setLanguage } = useLanguageStore((state) => ({
+  const { language, setLanguage } = useLanguageStore((state) => ({
+    language: state.language,
     setLanguage: state.setLanguage,
   }));
+  const cms = useCms();
   useGetLanguage();
 
   const handleLanguageChange = (lang: "tr" | "en") => {
     setLanguage(lang);
   };
+
+  const languageClass = (lang: "tr" | "en") =>
+    language === lang
+      ? "underline underline-offset-4"
+      : "opacity-50 hover:opacity-100 hover:underline underline-offset-4 hover:transition duration-300";
 
   return (
     <footer className="bg-[#27356f]">
@@ -22,184 +30,184 @@ export default function Footer() {
             <div className="f-t-outer-box flex xs:flex-col md:flex-row justify-center flex-wrap">
               <div className="f-t-box px-2.5 xs:pb-6 md:pb-0 xs:text-center md:text-start">
                 <h3 className="mb-5">
-                  <a href="/">Hakkımızda</a>
+                  <a href="/">{cms?.fBox1Title}</a>
                 </h3>
                 <ul>
                   <li className="mb-2">
-                    <a href="/">Genel Bakış</a>
+                    <a href="/">{cms?.fBox1}</a>
                   </li>
                   <li className="mb-2">
-                    <a href="/">Haberler & Duyurular</a>
+                    <a href="/">{cms?.fBox12}</a>
                   </li>
                   <li className="mb-2">
-                    <a href="/">Kurumsal İletişim ve Sürdürülebilirlik</a>
+                    <a href="/">{cms?.fBox13}</a>
                   </li>
                   <li className="mb-2">
-                    <a href="/">Kariyer</a>
+                    <a href="/">{cms?.fBox14}</a>
                   </li>
                   <li className="mb-2">
-                    <a href="/">Gizlilik ve Güvenlik</a>
+                    <a href="/">{cms?.fBox15}</a>
                   </li>
                   <li className="mb-2">
-                    <a href="/">İletişim</a>
+                    <a href="/">{cms?.fBox16}</a>
                   </li>
                   <li className="mb-2">
-                    <a href="/">Pasajda Satıcı Ol</a>
+                    <a href="/">{cms?.fBox17}</a>
                   </li>
                   <li className="mb-2">
-                    <a href="/">Pasaj Blog</a>
+                    <a href="/">{cms?.fBox18}</a>
                   </li>
                   <li className="mb-2">
-                    <a href="/">Pasaj Gaming</a>
+                    <a href="/">{cms?.fBox19}</a>
                   </li>
                   <li className="mb-2">
-                    <a href="/">Telefon Sat</a>
+                    <a href="/">{cms?.fBox110}</a>
                   </li>
                 </ul>
               </div>
               <div className="f-t-box px-2.5 xs:pb-6 md:pb-0 xs:text-center md:text-start">
                 <h3 className="mb-5">
-                  <a href="/">Popüler Kategoriler</a>
+                  <a href="/">{cms?.pcTitle}</a>
                 </h3>
                 <ul>
                   <li className="mb-2">
-                    <a href="/">Android Telefonlar</a>
+                    <a href="/">{cms?.fBox2}</a>
                   </li>
                   <li className="mb-2">
-                    <a href="/">iPhone Telefonlar</a>
+                    <a href="/">{cms?.fBox22}</a>
                   </li>
                   <li className="mb-2">
-                    <a href="/">İkinci El / Yenilenmiş Telefonlar</a>
+                    <a href="/">{cms?.fBox23}</a>
                   </li>
                   <li className="mb-2">
-                    <a href="/">Akıllı Saatler</a>
+                    <a href="/">{cms?.fBox24}</a>
                   </li>
                   <li className="mb-2">
-                    <a href="/">Bluetooth Kulaklıklar</a>
+                    <a href="/">{cms?.fBox25}</a>
                   </li>
                   <li className="mb-2">
-                    <a href="/">Telefon Kılıfları</a>
+                    <a href="/">{cms?.fBox26}</a>
                   </li>
                   <li className="mb-2">
-                    <a href="/">Tabletler</a>
+                    <a href="/">{cms?.fBox27}</a>
                   </li>
                   <li className="mb-2">
-                    <a href="/">Laptop</a>
+                    <a href="/">{cms?.fBox28}</a>
                   </li>
                   <li className="mb-2">
-                    <a href="/">Oyun Bilgisayarları</a>
+                    <a href="/">{cms?.fBox29}</a>
                   </li>
                   <li className="mb-2">
-                    <a href="/">Modemler</a>
+                    <a href="/">{cms?.fBox210}</a>
                   </li>
                 </ul>
               </div>
               <div className="f-t-box px-2.5 xs:pb-6 md:pb-0 xs:text-center md:text-start">
                 <h3 className="mb-5">
-                  <a href="/">Markalar</a>
+                  <a href="/">{cms?.fBox3Title}</a>
                 </h3>
                 <ul>
                   <li className="mb-2">
-                    <a href="/">Apple</a>
+                    <a href="/">{cms?.fBox3}</a>
                   </li>
                   <li className="mb-2">
-                    <a href="/">Samsung</a>
+                    <a href="/">{cms?.fBox32}</a>
                   </li>
                   <li className="mb-2">
-                    <a href="/">Dyson</a>
+                    <a href="/">{cms?.fBox33}</a>
                   </li>
                 </ul>
               </div>
               <div className="f-t-box px-2.5 xs:pb-6 md:pb-0 xs:text-center md:text-start">
                 <h3 className="mb-5">
-                  <a href="/">Yardım</a>
+                  <a href="/">{cms?.htHelp}</a>
                 </h3>
                 <ul>
                   <li className="mb-2">
-                    <a href="/">Yardım Merkezi</a>
+                    <a href="/">{cms?.fBox4}</a>
                   </li>
                   <li className="mb-2">
-                    <a href="/">İşlem Rehberi</a>
+                    <a href="/">{cms?.fBox42}</a>
                   </li>
                   <li className="mb-2">
-                    <a href="/">Sipariş Sorgulama</a>
+                    <a href="/">{cms?.htOrder}</a>
                   </li>
                   <li className="mb-2">
-                    <a href="/">Nasıl İade Edebilirim?</a>
+                    <a href="/">{cms?.fBox44}</a>
                   </li>
                 </ul>
               </div>
               <div className="f-t-box px-2.5 xs:pb-6 md:pb-0 xs:text-center md:text-start">
                 <h3 className="mb-5">
-                  <a href="/">Özel Günler & Kampanyalar</a>
+                  <a href="/">{cms?.fBox5Title}</a>
                 </h3>
                 <ul>
                   <li className="mb-2">
-                    <a href="/">Ramazan Kampanyası</a>
+                    <a href="/">{cms?.fBox5}</a>
                   </li>
                   <li className="mb-2">
-                    <a href="/">Ramazan Teklifleri</a>
+                    <a href="/">{cms?.fBox52}</a>
                   </li>
                   <li className="mb-2">
-                    <a href="/">Düğün ve Çeyiz Paketleri</a>
+                    <a href="/">{cms?.fBox53}</a>
                   </li>
                   <li className="mb-2">
-                    <a href="/">Telefon Sat</a>
+                    <a href="/">{cms?.fBox110}</a>
                   </li>
                   <li className="mb-2">
-                    <a href="/">Eskiyi Getir Yeniyi Al</a>
+                    <a href="/">{cms?.fBox55}</a>
                   </li>
                   <li className="mb-2">
-                    <a href="/">Teknolojik Cihaz Desteği</a>
+                    <a href="/">{cms?.fBox56}</a>
                   </li>
                   <li className="mb-2">
-                    <a href="/">Vergisiz Telefonlar</a>
+                    <a href="/">{cms?.fBox57}</a>
                   </li>
                   <li className="mb-2">
-                    <a href="/">Vergisiz Bilgisayarlar</a>
+                    <a href="/">{cms?.fBox58}</a>
                   </li>
                   <li className="mb-2">
-                    <a href="/">Fırsatlar Pasajı</a>
+                    <a href="/">{cms?.fBox59}</a>
                   </li>
                   <li className="mb-2">
-                    <a href="/">Pasaj Günleri</a>
+                    <a href="/">{cms?.fBox510}</a>
                   </li>
                 </ul>
               </div>
               <div className="f-t-box px-2.5 xs:pb-0 md:pb-0 xs:text-center md:text-start">
                 <h3 className="mb-5">
-                  <a href="/">Popüler Ürünler</a>
+                  <a href="/">{cms?.fBox6Title}</a>
                 </h3>
                 <ul>
                   <li className="mb-2">
-                    <a href="/">iPhone 15</a>
+                    <a href="/">{cms?.fBox6}</a>
                   </li>
                   <li className="mb-2">
-                    <a href="/">iPhone 15 Plus</a>
+                    <a href="/">{cms?.fBox62}</a>
                   </li>
                   <li className="mb-2">
-                    <a href="/">iPhone 15 Pro</a>
+                    <a href="/">{cms?.fBox63}</a>
                   </li>
                   <li className="mb-2">
-                    <a href="/">iPhone 15 Pro Max</a>
+                    <a href="/">{cms?.fBox64}</a>
                   </li>
                   <li className="mb-2">
-                    <a href="/">iPhone 14</a>
+                    <a href="/">{cms?.fBox65}</a>
                   </li>
                   <li className="mb-2">
-                    <a href="/">iPhone 14 Plus</a>
+                    <a href="/">{cms?.fBox66}</a>
                   </li>
                   <li className="mb-2">
-                    <a href="/">iPhone 14 Pro</a>
+                    <a href="/">{cms?.fBox67}</a>
                   </li>
                   <li className="mb-2">
-                    <a href="/">iPhone 14 Pro Max</a>
+                    <a href="/">{cms?.fBox68}</a>
                   </li>
                   <li className="mb-2">
-                    <a href="/">iPhone 13</a>
+                    <a href="/">{cms?.fBox69}</a>
                   </li>
                   <li className="mb-2">
-                    <a href="/">iPhone 13 Mini</a>
+                    <a href="/">{cms?.fBox610}</a>
                   </li>
                 </ul>
               </div>
@@ -216,23 +224,23 @@ export default function Footer() {
                 <li>
                   <a
                     href=""
-                    className="underline underline-offset-4"
+                    className={languageClass("tr")}
                     onClick={() => {
                       handleLanguageChange("tr");
                     }}
                   >
-                    Türkçe
+                    {cms?.fLangTr}
                   </a>
                 </li>
                 <li>
                   <a
                     href=""
-                    className="opacity-50 hover:opacity-100 hover:underline underline-offset-4 hover:transition duration-300"
+                    className={languageClass("en")}
                     onClick={() => {
                       handleLanguageChange("en");
                     }}
                   >
-                    English
+                    {cms?.fLangEn}
                   </a>
                 </li>
                 <li>
@@ -240,7 +248,7 @@ export default function Footer() {
                     href="/"
                     className="opacity-50 hover:opacity-100 hover:underline underline-offset-4 hover:transition duration-300"
                   >
-                    عربى
+                    {cms?.fLangAr}
                   </a>
                 </li>
                 <li>
@@ -248,13 +256,13 @@ export default function Footer() {
                     href="/"
                     className="opacity-50 hover:opacity-100 hover:underline underline-offset-4 hover:transition duration-300"
                   >
-                    русский
+                    {cms?.fLangRu}
                   </a>
                 </li>
               </ul>
             </div>
             <div className="f-m-box-social text-white flex items-center gap-12">
-              <strong>Bizi Takip Edin</strong>
+              <strong>{cms?.fBoxFollow}</strong>
               <div className="flex items-center gap-2">
                 <a href="https://x.com/Turkcell" target="_blank">
                   <i className="bi bi-twitter-x"></i>
@@ -478,12 +486,12 @@ export default function Footer() {
               <ul className="text-white flex items-center gap-6">
                 <li>
                   <a href="/" className="opacity-50 hover:opacity-100">
-                    Gizlilik ve Güvenlik
+                    {cms?.fBox15}
                   </a>
                 </li>
                 <li>
                   <a href="/" className="opacity-50 hover:opacity-100">
-                    Tarife Karşılaştırma
+                    {cms?.fb2}
                   </a>
                 </li>
               </ul>
@@ -515,9 +523,9 @@ export default function Footer() {
                   </a>
                 </div>
                 <p className="text-white opacity-50">
-                  © 2024
+                  {cms?.fbYear}
                   <br />
-                  Turkcell
+                  {cms?.fbBrand}
                 </p>
               </span>
             </div>
