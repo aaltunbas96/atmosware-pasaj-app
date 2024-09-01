@@ -4,6 +4,8 @@ import RootLayout from "@/components/layout/RootLayout";
 import { useFavListStore } from "@/store/favListStore";
 import React, { useEffect } from "react";
 import { useRouter } from "next/router";
+import useCms from "@/hooks/useCms";
+import useGetLanguage from "@/hooks/useGetLanguage";
 
 export interface Product {
   id: string;
@@ -19,6 +21,8 @@ export default function Favourites() {
   const { data: session, status } = useSession();
   const router = useRouter();
   const { favProducts, clearFavList } = useFavListStore();
+  const cms = useCms();
+  useGetLanguage();
 
   useEffect(() => {
     if (status === "loading") return;
@@ -26,7 +30,7 @@ export default function Favourites() {
   }, [session, status]);
 
   if (status === "loading") {
-    return <p className="text-center">Yükleniyor...</p>;
+    return <p className="text-center">{cms?.loading}</p>;
   }
 
   return (

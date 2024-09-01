@@ -95,7 +95,7 @@ export default function Header() {
   }, [session, status]);
 
   if (status === "loading" || !cms) {
-    return <p className="text-center">Yükleniyor...</p>;
+    return <p className="text-center">{cms?.loading}</p>;
   }
 
   const onFocus = () => {
