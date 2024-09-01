@@ -135,7 +135,9 @@ export default function Header() {
           </a>
           {!isSmallScreen && (
             <div className="header-top-menu flex gap-6">
-              <a href="http://localhost:3000/favourites">{cms?.htFav}</a>
+              <a href="https://atmosware-pasaj-app.vercel.app/favourites">
+                {cms?.htFav}
+              </a>
               <a href="/">{cms?.htCam}</a>
               <a href="/">{cms?.htHelp}</a>
               <a href="/">{cms?.htWhy}</a>
@@ -222,7 +224,7 @@ export default function Header() {
               onFocus={onFocus}
             />
             <a
-              href="http://localhost:3000/basket"
+              href="https://atmosware-pasaj-app.vercel.app/basket"
               className="my-basket flex justify-center gap-4 items-center relative xs:max-w-[135px] xs:max-h-[45px] xs:px-[19.5px] md:max-w-[180px] md:max-h-[60px] md:px-[26px]"
             >
               <svg
