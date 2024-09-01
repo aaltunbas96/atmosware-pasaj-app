@@ -33,8 +33,6 @@ export default function Header() {
   const cms = useCms();
   useGetLanguage();
 
-  console.log(cms);
-
   const options = [
     { value: "one", label: cms?.htFav },
     { value: "two", label: cms?.loginOrder },
@@ -96,7 +94,7 @@ export default function Header() {
     if (status === "loading") return;
   }, [session, status]);
 
-  if (status === "loading") {
+  if (status === "loading" || !cms) {
     return <p className="text-center">Yükleniyor...</p>;
   }
 
