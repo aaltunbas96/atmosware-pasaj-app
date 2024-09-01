@@ -1,4 +1,4 @@
-import { useSearchProductsListStore } from "@/store/searchProductsList";
+import { useSearchProductsListStore } from "@/store/searchProductsListStore";
 import { useState, useEffect } from "react";
 import "react-multi-carousel/lib/styles.css";
 import { useQuery } from "react-query";

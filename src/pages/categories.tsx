@@ -2,7 +2,7 @@ import CategoriesFilter from "@/components/categories/CategoriesFilter";
 import CategoriesTabs from "@/components/categories/CategoriesTabs";
 import ProductCard from "@/components/home/ProductCard";
 import RootLayout from "@/components/layout/RootLayout";
-import { useSearchProductsListStore } from "@/store/searchProductsList";
+import { useSearchProductsListStore } from "@/store/searchProductsListStore";
 
 interface Product {
   id: string;

@@ -1,7 +1,7 @@
 import useCms from "@/hooks/useCms";
 import useGetLanguage from "@/hooks/useGetLanguage";
 import { useLanguageStore } from "@/store/languageStore";
-import { useSearchProductsListStore } from "@/store/searchProductsList";
+import { useSearchProductsListStore } from "@/store/searchProductsListStore";
 import { useRouter } from "next/router";
 import React, { useCallback, useEffect, useState } from "react";
 import { useQuery } from "react-query";

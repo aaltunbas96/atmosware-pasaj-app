@@ -1,4 +1,4 @@
-import { useProductsStore } from "@/store/products";
+import { useProductsStore } from "@/store/productsStore";
 import React from "react";
 
 export interface Product {

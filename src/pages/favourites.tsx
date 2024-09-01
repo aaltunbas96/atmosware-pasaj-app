@@ -1,7 +1,7 @@
 import { useSession } from "next-auth/react";
 import ProductCard from "@/components/home/ProductCard";
 import RootLayout from "@/components/layout/RootLayout";
-import { useFavListStore } from "@/store/favList";
+import { useFavListStore } from "@/store/favListStore";
 import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 

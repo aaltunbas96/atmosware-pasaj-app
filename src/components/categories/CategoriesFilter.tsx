@@ -1,4 +1,4 @@
-import { useSearchProductsListStore } from "@/store/searchProductsList";
+import { useSearchProductsListStore } from "@/store/searchProductsListStore";
 import React, { useState, useEffect } from "react";
 
 export default function CategoriesFilter() {

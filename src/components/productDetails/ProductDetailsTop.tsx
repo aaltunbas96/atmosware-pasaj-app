@@ -1,7 +1,7 @@
 import useGetLanguage from "@/hooks/useGetLanguage";
-import { useFavListStore } from "@/store/favList";
+import { useFavListStore } from "@/store/favListStore";
 import { useLanguageStore } from "@/store/languageStore";
-import { useProductsStore } from "@/store/products";
+import { useProductsStore } from "@/store/productsStore";
 import { useParams } from "next/navigation";
 import React, { useState, useEffect, FormEvent, MouseEvent } from "react";
 import { useForm } from "react-hook-form";

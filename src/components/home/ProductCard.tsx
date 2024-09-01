@@ -3,7 +3,7 @@ import React from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { HeartIcon } from "../icons/HeartIcon";
-import { useFavListStore } from "@/store/favList";
+import { useFavListStore } from "@/store/favListStore";
 import { toast } from "react-toastify";
 import useCms from "@/hooks/useCms";
 import useGetLanguage from "@/hooks/useGetLanguage";

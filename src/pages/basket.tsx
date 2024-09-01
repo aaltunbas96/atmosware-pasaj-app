@@ -1,7 +1,7 @@
 import BasketCard, { Product } from "@/components/basket/BasketCard";
 import BasketSummary from "@/components/basket/BasketSummary";
 import RootLayout from "@/components/layout/RootLayout";
-import { useProductsStore } from "@/store/products";
+import { useProductsStore } from "@/store/productsStore";
 import React from "react";
 
 export default function basket() {

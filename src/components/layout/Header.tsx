@@ -1,4 +1,4 @@
-import { useProductsStore } from "@/store/products";
+import { useProductsStore } from "@/store/productsStore";
 import React, { useEffect, useState } from "react";
 import SearchArea from "./SearchArea";
 import { signOut, useSession } from "next-auth/react";
@@ -9,7 +9,7 @@ import Carousel from "react-multi-carousel";
 import useWindowSize from "@/hooks/useWindowSize";
 import ReactDropdown from "react-dropdown";
 import { useQuery } from "react-query";
-import { useSearchProductsListStore } from "@/store/searchProductsList";
+import { useSearchProductsListStore } from "@/store/searchProductsListStore";
 import { useLanguageStore } from "@/store/languageStore";
 import useGetLanguage from "@/hooks/useGetLanguage";
 import useCms from "@/hooks/useCms";
