@@ -33,6 +33,8 @@ export default function Header() {
   const cms = useCms();
   useGetLanguage();
 
+  console.log(cms);
+
   const options = [
     { value: "one", label: cms?.htFav },
     { value: "two", label: cms?.loginOrder },
