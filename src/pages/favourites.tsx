@@ -22,7 +22,6 @@ export default function Favourites() {
   const router = useRouter();
   const { favProducts, clearFavList } = useFavListStore();
   const cms = useCms();
-  useGetLanguage();
 
   useEffect(() => {
     if (status === "loading") return;

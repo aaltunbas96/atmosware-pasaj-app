@@ -23,7 +23,6 @@ export default function MostPurchased() {
   const { getEndpoint } = useLanguageStore();
   const endpoint = getEndpoint();
   const cms = useCms();
-  useGetLanguage();
 
   const { data: products } = useQuery(
     ["products", selectedCategory],

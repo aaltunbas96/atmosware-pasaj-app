@@ -31,7 +31,6 @@ export default function CategoriesTabs() {
   const { getEndpoint } = useLanguageStore();
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const endpoint = getEndpoint();
-  useGetLanguage();
 
   const { refetch } = useQuery(
     ["products", selectedCategory],

@@ -4,7 +4,6 @@ import React from "react";
 
 export default function SpecialOffer() {
   const cms = useCms();
-  useGetLanguage();
 
   return (
     <section className="special-offer xs:py-[25px] md:py-[50px]">

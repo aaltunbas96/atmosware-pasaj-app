@@ -28,7 +28,6 @@ export default function ProductCard({ product }: ProductCardProps) {
     useFavListStore();
   const isFavorite = favProducts.some((favProduct) => favProduct.id === id);
   const cms = useCms();
-  useGetLanguage();
 
   const onClick = () => {
     if (isFavorite) {

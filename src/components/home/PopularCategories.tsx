@@ -4,7 +4,6 @@ import React from "react";
 
 export default function PopularCategories() {
   const cms = useCms();
-  useGetLanguage();
 
   return (
     <section className="popular-categories py-[50px]">

@@ -3,7 +3,7 @@ import useGetLanguage from "@/hooks/useGetLanguage";
 import { useLanguageStore } from "@/store/languageStore";
 import { useSearchProductsListStore } from "@/store/searchProductsListStore";
 import { useRouter } from "next/router";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useQuery } from "react-query";
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
 
@@ -32,7 +32,7 @@ function searchProducts(data: Product[], item: string): Product[] {
 export default function SearchArea() {
   const { getEndpoint } = useLanguageStore();
   const endpoint = getEndpoint();
-  useGetLanguage();
+
   const fetchProducts = async (): Promise<Product[]> => {
     const response = await fetch(endpoint);
     if (!response.ok) {

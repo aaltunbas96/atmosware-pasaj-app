@@ -31,7 +31,6 @@ export default function Header() {
   const { getEndpoint } = useLanguageStore();
   const endpoint = getEndpoint();
   const cms = useCms();
-  useGetLanguage();
 
   const options = [
     { value: "one", label: cms?.htFav },

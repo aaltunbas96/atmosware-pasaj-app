@@ -4,7 +4,6 @@ import React from "react";
 
 export default function WhyUs() {
   const cms = useCms();
-  useGetLanguage();
 
   return (
     <section className="why-us">

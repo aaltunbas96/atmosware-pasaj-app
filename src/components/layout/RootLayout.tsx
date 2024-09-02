@@ -1,3 +1,4 @@
+import useGetLanguage from "@/hooks/useGetLanguage";
 import Footer from "./Footer";
 import Header from "./Header";
 
@@ -6,6 +7,8 @@ interface RootLayoutProps {
 }
 
 export default function RootLayout(props: RootLayoutProps) {
+  useGetLanguage();
+
   return (
     <div>
       <Header />

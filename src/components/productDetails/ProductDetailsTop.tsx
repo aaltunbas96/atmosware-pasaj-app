@@ -18,7 +18,6 @@ export default function ProductDetailsTop() {
   const { register, watch } = useForm();
   const { getEndpoint } = useLanguageStore();
   const endpoint = getEndpoint();
-  useGetLanguage();
 
   const fetchProduct = async (id: string) => {
     const response = await fetch(endpoint + "/" + id);

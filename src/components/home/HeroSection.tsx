@@ -96,7 +96,6 @@ const responsive = {
 
 export default function HeroSection() {
   const cms = useCms();
-  useGetLanguage();
 
   return (
     <section className="hero-section xs:pt-5 md:pt-10 xs:pb-6 md:pb-12 xs:h-[220.5px] md:h-[588px]">

@@ -6,7 +6,6 @@ import "react-multi-carousel/lib/styles.css";
 
 export default function Opportunities() {
   const cms = useCms();
-  useGetLanguage();
 
   return (
     <section className="opportunities py-[50px]">

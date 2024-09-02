@@ -11,7 +11,6 @@ export default function Footer() {
     setLanguage: state.setLanguage,
   }));
   const cms = useCms();
-  useGetLanguage();
 
   const handleLanguageChange = (lang: "tr" | "en") => {
     setLanguage(lang);

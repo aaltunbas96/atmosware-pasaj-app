@@ -4,7 +4,6 @@ import React from "react";
 
 export default function Campaigns() {
   const cms = useCms();
-  useGetLanguage();
 
   return (
     <section className="campaigns py-[50px]">
